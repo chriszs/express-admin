@@ -205,8 +205,16 @@ function initServer (args) {
         .use(csrf())
 
         .use(methodOverride())
-        .use(serveStatic(path.join(__dirname, 'public')))
-        .use(serveStatic(require.resolve('express-admin-static')));
+        .use(serveStatic(path.join(__dirname, 'public')));
+
+    var staticPath = path.join(__dirname, 'node_modules', 'express-admin-static');
+    if (fs.existsSync(staticPath)) {
+        app.use(serveStatic(staticPath));
+    }
+    else {
+        staticPath = path.join(__dirname, '..', 'express-admin-static');
+        app.use(serveStatic(staticPath));
+    }
 
     if (!args.debug) app.set('view cache', true);
 
