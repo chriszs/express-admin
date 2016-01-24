@@ -7,6 +7,11 @@ lib-cov
 *.pid
 *.gz
 
+config.json
+custom.json
+settings.json
+users.json
+
 pids
 logs
 results
