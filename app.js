@@ -109,6 +109,7 @@ function initSettings (args) {
         for (var i=0; i < files.length; i++) {
             var name = files[i].replace(path.extname(files[i]), '');
             langs[name] = require(path.join(dpath, files[i]));
+            if (args.config.app.name) langs[name].logo = args.config.app.name;
         }
         return langs;
     }());
